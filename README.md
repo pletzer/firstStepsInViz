@@ -67,10 +67,56 @@ prisms with lines and even single points that are not connected to any other poi
 for a full list of supported cells. Naturally, unstructured grids are more flexible than structured grids.
 The latter are however easier to use (and more efficient), if that's what you need.
 
+We'll start with a polar grid represented as a structured grid:
+```bash
+cd grid
+python polar.py
+```
+Note how the structured grid is constructed. First, the set of coordinates is computed and stored in object `coords`, 
+an array of doubles
+```python
+coords.SetNumberOfComponents(3)
+coords.SetNumberOfTuples(numPoints)
+k = 0
+for j in range(nrho):
+    rho = j * drho
+    for i in range(nthe):
+        the = i * dthe
+        x = rho * cos(the)
+        y = rho * sin(the)
+        z = 0.0
+        coords.SetTuple(k, (x, y, z))
+        k += 1
+```
+Then an object `pts` of type vtkPoints is created with the points set to array `coords`. Finally,
+the structured grid object `grid` sets the points (`pts`). 
+
+Using a for loop in python can be a little slow for large grids. Here is a little know trick -- it is also possible to create all the data using the python numpy module and then pass the data directly to VTK:
+```python
+thes = numpy.linspace(0., 2*numpy.pi, nthe)
+rhos = numpy.linspace(0., 1., nrho)
+tthes, rrhos = numpy.meshgrid(thes, rhos)
+xyz = numpy.zeros((numPoints, 3), numpy.float64)
+rrhos = numpy.reshape(rrhos, (numPoints,))
+tthes = numpy.reshape(tthes, (numPoints,))
+xyz[:, 0] = rrhos*numpy.cos(tthes)
+xyz[:, 1] = rrhos*numpy.sin(tthes)
+
+coords.SetNumberOfComponents(3)
+coords.SetNumberOfTuples(numPoints)
+coords.SetVoidArray(xyz, 3*numPoints, 1)
+```
+
+Finally it should be noted that all VTK objects work with 3D grids and coordinates. Because our grid is 2D we must 
+set one of the dimensions to one:
+```python
+grid.SetDimensions(nthe, nrho, 1)
+```
+
+### Adding data to the grid
+
+In VTK data don't generally exist without a grid but a grid can exist without data. So far we just built a grid 
+but neglected to attach data to the grid. There are two types of data __point__ data and __cell__ data. Point data
+belong the grid nodes whereas cell data belong to grid cells. 
 
 
-First everything in VTK is geared toward 3D so 
-
-
-
-### Understanding file formats

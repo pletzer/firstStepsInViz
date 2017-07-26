@@ -113,10 +113,39 @@ set one of the dimensions to one:
 grid.SetDimensions(nthe, nrho, 1)
 ```
 
-### Adding data to the grid
+### Visualizing data on a grid
 
 In VTK data don't generally exist without a grid but a grid can exist without data. So far we just built a grid 
 but neglected to attach data to the grid. There are two types of data __point__ data and __cell__ data. Point data
-belong the grid nodes whereas cell data belong to grid cells. 
+belong the grid nodes whereas cell data associate to grid cells.
 
+To set the point data use
+```python
+grid.GetPointData().SetScalars(data)
+```
 
+To set cell data use
+```python
+grid.GetCellData().SetScalars(data)
+```
+
+We'll start with point data
+```python
+python polarWithPointData.py
+```
+
+Compare this to cell data
+```python
+python polarWithCellData.py
+```
+You'll notice that the cell get a soldi colour in the case of cell data. Point data are interpolated linearly from 
+each node to the neighbour node. 
+
+### Adding colour
+
+The default colour map in VTK maps low values to red and high values to blue! We need to fix this by adding a lookup 
+table and a color bar actor. 
+
+```python
+polarWithPointDataLut.py
+```

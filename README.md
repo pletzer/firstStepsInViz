@@ -43,13 +43,34 @@ points.
 
 ### What is a scene?
 
-Visualization is a little like a theater play; there is a background, there are lights and actors. 
-
+Visualization is a little like a theater play; there is a background, there are lights and actors. We'll start 
+with a cone as an actor:
 ```bash
 cd scene
+python cone.py
 ```
 
+Next we'll refine the cone and add some lights, each with its own colour:
+```bash
+python coneWithLight.py
+```
 
-## Understanding grids
+### Understanding grids
 
-## Understanding file formats
+More likely, your visualizations will involve gridded data so we'll need to understand how grids 
+are represented in VTK. The main types of grid are __structured__ and __unstructructed__. Structured 
+grids have regular topology with arbitrary points. This means that given a set of indices describing 
+a point I can always find the neighbours without additional information beyond the size of the grid. 
+Unstructured grids built on top of points and cells and the arrangement can be arbitrary, i.e. one 
+has to specify the topology. You can mix cells of different types in VTK, for instance hexahedra with
+prisms with lines and even single points that are not connected to any other point. See [http://www.vtk.org/data-model/]
+for a full list of supported cells. Naturally, unstructured grids are more flexible than structured grids.
+The latter are however easier to use (and more efficient), if that's what you need.
+
+
+
+First everything in VTK is geared toward 3D so 
+
+
+
+### Understanding file formats

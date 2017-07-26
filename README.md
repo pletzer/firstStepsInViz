@@ -130,12 +130,12 @@ grid.GetCellData().SetScalars(data)
 ```
 
 We'll start with point data
-```python
+```bash
 python polarWithPointData.py
 ```
 
 Compare this to cell data
-```python
+```bash
 python polarWithCellData.py
 ```
 You'll notice that the cell get a solid colour in the case of cell data. Point data are interpolated linearly from 
@@ -146,6 +146,40 @@ each node to the neighbour node.
 The default colour map in VTK maps low values to red and high values to blue! We need to fix this by adding a lookup 
 table and a color bar actor. 
 
+A lookup table 
 ```python
-polarWithPointDataLut.py
+lut = vtk.vtkLookupTable()
+```
+maps a data value to a colour, encoded as four floats in the range oof 0 to 1 (red, green, blue and opacity). Here 
+we'll set the colour range to vary from white to green, to light blue, red, purple and black. 
+```python
+ncolors = 64
+lut.SetNumberOfColors(ncolors)
+for i in range(ncolors):
+    x = 0.5*i*numpy.pi/(ncolors - 1.)
+    r = numpy.cos(3*x)**2
+    g = numpy.cos(1*x)**2
+    b = numpy.cos(5*x)**2
+    a = 1.0 # opacity
+    lut.SetTableValue(i, r, g, b, a)
+lut.SetTableRange(fMin, fMax)
+```
+You will also need to tell the mapper to use the look up table
+```python
+dataMapper.SetUseLookupTableScalarRange(1)
+dataMapper.SetLookupTable(lut)
+```
+
+The color bar is an actor
+```python
+cbar = vtk.vtkScalarBarActor()
+cbar.SetLookupTable(lut)
+```
+which must be added to the scene
+```python
+ren.AddActor(cbar)
+```
+
+```bash
+python polarWithPointDataLut.py
 ```

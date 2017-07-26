@@ -10,15 +10,15 @@ using our innate concepts for perspective, depth of field, colour, shading and l
 ## What makes 3D visualization different from plotting?
 
 Both plotting and visualization aim to convey as much information as possible. The two approaches 
-are complementary: plotting represents objects and information of a flat sheet of paper whereas 
-visualization will show those objects in a 3D scene. As such visualization will typically have the 
-viewer interact with the object (through rotation of the camera, adjusting the light, etc.). Plotting
+are complementary: plotting represents objects and information on a flat sheet of paper whereas 
+visualization will show those objects in a 3D scene. In a visualization the 
+viewer will typically interact with the object (through rotation of the camera, adjusting the light, etc.). Plotting
 tends to be static, hence it is more suitable for publishing.
 
 ## What tool should I use for visualization?
 
 For custom visualizations I recommend VTK, which is free. You can either install precompiled versions
-of VTK or build the toolkit from source. It comes with Python bindings, which make it easy to explore
+of VTK or build the toolkit from source. It comes with Python bindings, which makes it easy to explore
 visualization concepts.
 
 Hint: if you're using Python via Anaconda you can install the VTK toolkit and Python bindings with
@@ -35,7 +35,7 @@ quickly. Both these tools are free and binaries exist for nearly for Windows, Li
 ### What is a pipeline?
 
 Visualizations are made of elements which are assembled into a pipeline, essentially a workflow. 
-Typically, a pipeline will involve reading data, applying filters, creating actors and render the
+Typically, a pipeline will involve reading data, applying filters, creating actors and rendering the
 actors in a scene. Filters extract information from the data; e.g. a contour filter might extract 
 the surface for which a field satisfy a constraint. Actors are objects that be rendered; triangles, 
 lines, points, etc. At the end of the day every actor is made of collections of triangles, lines and 
@@ -60,12 +60,12 @@ python coneWithLight.py
 More likely, your visualizations will involve gridded data so we'll need to understand how grids 
 are represented in VTK. The main types of grid are __structured__ and __unstructructed__. Structured 
 grids have regular topology with arbitrary points. This means that given a set of indices describing 
-a point I can always find the neighbours without additional information beyond the size of the grid. 
-Unstructured grids built on top of points and cells and the arrangement can be arbitrary, i.e. one 
+a point we can always find the neighbours without additional information beyond the size of the grid. 
+Unstructured grids build on top of points and cells and the arrangement can be arbitrary, i.e. one 
 has to specify the topology. You can mix cells of different types in VTK, for instance hexahedra with
-prisms with lines and even single points that are not connected to any other point. See [http://www.vtk.org/data-model/]
+prisms, lines and points. See [http://www.vtk.org/data-model/]
 for a full list of supported cells. Naturally, unstructured grids are more flexible than structured grids.
-The latter are however easier to use (and more efficient), if that's what you need.
+The latter are however easier to use (and more efficient).
 
 We'll start with a polar grid represented as a structured grid:
 ```bash
@@ -91,7 +91,7 @@ for j in range(nrho):
 Then an object `pts` of type vtkPoints is created with the points set to array `coords`. Finally,
 the structured grid object `grid` sets the points (`pts`). 
 
-Using a for loop in python can be a little slow for large grids. Here is a little know trick -- it is also possible to create all the data using the python numpy module and then pass the data directly to VTK:
+Using a for loop in python can be a little slow for large grids. Here is a little know trick - it is possible to create all the data using the python numpy module and then pass the data directly to VTK:
 ```python
 thes = numpy.linspace(0., 2*numpy.pi, nthe)
 rhos = numpy.linspace(0., 1., nrho)
@@ -116,7 +116,7 @@ grid.SetDimensions(nthe, nrho, 1)
 ### Visualizing data on a grid
 
 In VTK data don't generally exist without a grid but a grid can exist without data. So far we just built a grid 
-but neglected to attach data to the grid. There are two types of data __point__ data and __cell__ data. Point data
+but neglected to attach data to the grid. There are two types of data: __point__ data and __cell__ data. Point data
 belong the grid nodes whereas cell data associate to grid cells.
 
 To set the point data use
@@ -138,7 +138,7 @@ Compare this to cell data
 ```python
 python polarWithCellData.py
 ```
-You'll notice that the cell get a soldi colour in the case of cell data. Point data are interpolated linearly from 
+You'll notice that the cell get a solid colour in the case of cell data. Point data are interpolated linearly from 
 each node to the neighbour node. 
 
 ### Adding colour

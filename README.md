@@ -180,6 +180,7 @@ which must be added to the scene
 ren.AddActor(cbar)
 ```
 
+Try it out:
 ```bash
 python polarWithPointDataLut.py
 ```

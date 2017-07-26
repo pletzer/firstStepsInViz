@@ -55,7 +55,7 @@ Next we'll refine the cone and add some lights, each with its own colour:
 python coneWithLight.py
 ```
 
-### Understanding grids
+## Understanding grids
 
 More likely, your visualizations will involve gridded data so we'll need to understand how grids 
 are represented in VTK. The main types of grid are __structured__ and __unstructructed__. Structured 
@@ -184,3 +184,27 @@ Try it out:
 ```bash
 python polarWithPointDataLut.py
 ```
+
+### Adding depth
+
+Shame, so far we worked in flat land -- when generating grid points we set the elevation `z` to zero. Let's set the 
+elevation of the value of another function:
+```python
+rr2 = (xx**2 + yy**2).reshape((numPoints,))
+xyz[:, 2] = 0.2*numpy.sin(10.*rr2)/numpy.sqrt(2.*rr2)
+```
+and run 
+```bash
+python polarWithPointDataLutBump.py
+```
+
+## Going fully 3D
+
+
+### I want to see inside!
+
+### Creating iso-surfaces
+
+## More advanced topics
+
+Hope you enjoyed the tutorial! Feel free to make suggestions and create pull-request. 

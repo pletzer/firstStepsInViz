@@ -46,13 +46,12 @@ points.
 Visualization is a little like a theater play; there is a background, there are lights and actors. We'll start 
 with a cone as an actor:
 ```bash
-cd scene
-python cone.py
+python scene/cone.py
 ```
 
 Next we'll refine the cone and add some lights, each with its own colour:
 ```bash
-python coneWithLight.py
+python scene/coneWithLight.py
 ```
 
 ## Understanding grids
@@ -69,8 +68,7 @@ The latter are however easier to use (and more efficient).
 
 We'll start with a polar grid represented as a structured grid:
 ```bash
-cd grid
-python polar.py
+python grid/polar.py
 ```
 Note how the structured grid is constructed. First, the set of coordinates is computed and stored in object `coords`, 
 an array of doubles
@@ -131,12 +129,12 @@ grid.GetCellData().SetScalars(data)
 
 We'll start with point data
 ```bash
-python polarWithPointData.py
+python grid/polarWithPointData.py
 ```
 
 Compare this to cell data
 ```bash
-python polarWithCellData.py
+python grid/polarWithCellData.py
 ```
 You'll notice that the cell get a solid colour in the case of cell data. Point data are interpolated linearly from 
 each node to the neighbour node. 
@@ -182,12 +180,12 @@ ren.AddActor(cbar)
 
 Try it out:
 ```bash
-python polarWithPointDataLut.py
+python grid/polarWithPointDataLut.py
 ```
 
 ### Adding depth
 
-Shame, so far we worked in flat land -- when generating grid points we set the elevation `z` to zero. Let's set the 
+So far we worked in flat land -- when generating grid points we set the elevation `z` to zero. Let's set the 
 elevation of the value of another function:
 ```python
 rr2 = (xx**2 + yy**2).reshape((numPoints,))
@@ -195,15 +193,14 @@ xyz[:, 2] = 0.2*numpy.sin(10.*rr2)/numpy.sqrt(2.*rr2)
 ```
 and run 
 ```bash
-python polarWithPointDataLutBump.py
+python grid/polarWithPointDataLutBump.py
 ```
 
 ## Going fully 3D
 
 The previous example was not really in 3D - it represented a surface in 3D and a surface is a 2D object. Do 
 ```bash
-cd 3d
-python cube.py
+python 3d/cube.py
 ```
 to run a case with 3D data. We're facing a new problem: we only see the exterior of the cube.
 
@@ -218,9 +215,14 @@ knife = vtk.vtkCutter()
 knife.SetCutFunction(plane)
 ```
 
+Try:
+```bash
+python 3d/cubeCut.py
+```
+
 ### Creating iso-surfaces
 
-Another possibility is generate iso-surfaces from the data. In this case we choose to show only the data values 0.2, 0.4 and 0.7.
+Another possibility is generate iso-surfaces from the data. Let's say we want to show the surfaces for which the data take values 0.2, 0.4 and 0.7.
 ```python
 contour = vtk.vtkContourFilter()
 contour.SetNumberOfValues(3)
@@ -232,6 +234,9 @@ mapper = vtk.vtkPolyDataMapper()
 mapper.SetInputConnection(contour.getOutputPort())
 ```
 
-## More advanced topics
+Try:
+```python
+python 3d/cubeIsoSurface.py
+```
 
 Hope you enjoyed the tutorial! Feel free to make suggestions and create pull-request. 

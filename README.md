@@ -30,7 +30,13 @@ Many users may want to consider [ViSIt](https://wci.llnl.gov/simulation/computer
 If your file format is support by any of these tools then you will be ablt explore your data more 
 quickly. Both these tools are free and binaries exist for nearly for Windows, Linux and Mac OS X. 
 
-## General visualization concepts
+## Overview
+1. [General visualization concepts](#scene)
+2. [Understanding grids](#grid)
+3. [Going fully 3D](#threed)
+
+
+## General visualization concepts <a name="scene"></a>
 
 ### What is a pipeline?
 
@@ -54,7 +60,7 @@ Next we'll refine the cone and add some lights, each with its own colour:
 python scene/coneWithLight.py
 ```
 
-## Understanding grids
+## Understanding grids <a name="grid"></a>
 
 More likely, your visualizations will involve gridded data so we'll need to understand how grids 
 are represented in VTK. The main types of grid are __structured__ and __unstructructed__. Structured 
@@ -196,7 +202,7 @@ and run
 python grid/polarWithPointDataLutBump.py
 ```
 
-## Going fully 3D
+## Going fully 3D <a name="threed"></a>
 
 The previous example was not really in 3D - it represented a surface in 3D and a surface is a 2D object. Do 
 ```bash

@@ -21,7 +21,7 @@ For custom visualizations I recommend [VTK](http://www.vtk.org/), which is free.
 of VTK or build the toolkit from source. It comes with Python bindings, which makes it easy to explore
 visualization concepts.
 
-Hint: if you're using Python via Anaconda you can install the VTK toolkit and Python bindings with
+Hint: if you're using Python via [Anaconda](https://www.continuum.io/downloads) you can install the VTK toolkit and Python bindings with
 ```bash
 conda install -c anaconda vtk
 ```
@@ -222,7 +222,7 @@ python 3d/cubeCut.py
 
 ### Creating iso-surfaces
 
-Another possibility is generate iso-surfaces from the data. Let's say we want to show the surfaces for which the data take values 0.2, 0.4 and 0.7.
+Another possibility is generate iso-surfaces from the data. Let's say we want to show the surfaces for which the data take values 0.2, 0.4 and 0.7:
 ```python
 contour = vtk.vtkContourFilter()
 contour.SetNumberOfValues(3)

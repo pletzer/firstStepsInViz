@@ -17,7 +17,7 @@ tends to be static, hence it is more suitable for publishing.
 
 ## What tool should I use for visualization?
 
-For custom visualizations I recommend [VTK](http://www.vtk.org/), which is free. You can either install precompiled versions
+For custom visualizations we recommend [VTK](http://www.vtk.org/), which is free. You can either install precompiled versions
 of VTK or build the toolkit from source. It comes with Python bindings, which makes it easy to explore
 visualization concepts.
 

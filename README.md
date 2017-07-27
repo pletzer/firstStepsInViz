@@ -200,6 +200,12 @@ python polarWithPointDataLutBump.py
 
 ## Going fully 3D
 
+The previous example was not really in 3D - it represented a surface in 3D and a surface is a 2D object. Do 
+```bash
+cd 3d
+python cube.py
+```
+to run a case with 3D data. We're facing a new problem: we only the exterior of the cube.
 
 ### I want to see inside!
 

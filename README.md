@@ -17,7 +17,7 @@ tends to be static, hence it is more suitable for publishing.
 
 ## What tool should I use for visualization?
 
-For custom visualizations I recommend VTK, which is free. You can either install precompiled versions
+For custom visualizations I recommend [VTK](http://www.vtk.org/), which is free. You can either install precompiled versions
 of VTK or build the toolkit from source. It comes with Python bindings, which makes it easy to explore
 visualization concepts.
 
@@ -26,7 +26,7 @@ Hint: if you're using Python via Anaconda you can install the VTK toolkit and Py
 conda install -c anaconda vtk
 ```
 
-Many users may want to consider ViSIt or Paraview as these tools will require no or minimal programming. 
+Many users may want to consider [ViSIt](https://wci.llnl.gov/simulation/computer-codes/visit/) or [Paraview](https://www.paraview.org/) as these tools will require no or minimal programming. 
 If your file format is support by any of these tools then you will be ablt explore your data more 
 quickly. Both these tools are free and binaries exist for nearly for Windows, Linux and Mac OS X. 
 
@@ -235,7 +235,7 @@ mapper.SetInputConnection(contour.getOutputPort())
 ```
 
 Try:
-```python
+```bash
 python 3d/cubeIsoSurface.py
 ```
 

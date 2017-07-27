@@ -205,11 +205,32 @@ The previous example was not really in 3D - it represented a surface in 3D and a
 cd 3d
 python cube.py
 ```
-to run a case with 3D data. We're facing a new problem: we only the exterior of the cube.
+to run a case with 3D data. We're facing a new problem: we only see the exterior of the cube.
 
 ### I want to see inside!
 
+One possibility is to cut through the data. We'll create a `vtkCutter` object and indicate to VTK that we will cut the domain with a `vtkPlane`:
+```python
+plane = vtk.vtkPlane()
+plane.SetPosition(0.5, 0.5, 0.5)
+plane.SetNormal(1., 0.2, -0.3)
+knife = vtk.vtkCutter()
+knife.SetCutFunction(plane)
+```
+
 ### Creating iso-surfaces
+
+Another possibility is generate iso-surfaces from the data. In this case we choose to show only the data values 0.2, 0.4 and 0.7.
+```python
+contour = vtk.vtkContourFilter()
+contour.SetNumberOfValues(3)
+contour.SetValue(0, 0.2)
+contour.SetValue(1, 0.4)
+contour.SetValue(2, 0.7)
+contour.SetInputData(grid)
+mapper = vtk.vtkPolyDataMapper()
+mapper.SetInputConnection(contour.getOutputPort())
+```
 
 ## More advanced topics
 

@@ -50,12 +50,16 @@ points.
 ### What is a scene?
 
 Visualization is a little like a theater play; there is a background, there are lights and actors. We'll start 
-with a cone as an actor:
+with a cone playing the role of an actor.
+
+Try:
 ```bash
 python scene/cone.py
 ```
 
-Next we'll refine the cone and add some lights, each with its own colour:
+Next we'll refine the cone and add some lights, each with its own colour. 
+
+Try:
 ```bash
 python scene/coneWithLight.py
 ```
@@ -72,10 +76,13 @@ prisms, lines and points. See [http://www.vtk.org/data-model/]
 for a full list of supported cells. Naturally, unstructured grids are more flexible than structured grids.
 The latter are however easier to use (and more efficient).
 
-We'll start with a polar grid represented as a structured grid:
+We'll start with a polar grid represented as a structured grid.
+
+Try:
 ```bash
 python grid/polar.py
 ```
+
 Note how the structured grid is constructed. First, the set of coordinates is computed and stored in object `coords`, 
 an array of doubles
 ```python
@@ -95,7 +102,7 @@ for j in range(nrho):
 Then an object `pts` of type vtkPoints is created with the points set to array `coords`. Finally,
 the structured grid object `grid` sets the points (`pts`). 
 
-Using a for loop in python can be a little slow for large grids. Here is a little know trick - it is possible to create all the data using the python numpy module and then pass the data directly to VTK:
+Using a for loop in python can be a little slow for large grids. Here is a little known trick - it is possible to create all the data using the python numpy module and then pass the data directly to VTK:
 ```python
 thes = numpy.linspace(0., 2*numpy.pi, nthe)
 rhos = numpy.linspace(0., 1., nrho)
@@ -123,7 +130,7 @@ In VTK data don't generally exist without a grid but a grid can exist without da
 but neglected to attach data to the grid. There are two types of data: __point__ data and __cell__ data. Point data
 belong the grid nodes whereas cell data associate to grid cells.
 
-To set the point data use
+To set the point data use:
 ```python
 grid.GetPointData().SetScalars(data)
 ```
@@ -133,12 +140,12 @@ To set cell data use
 grid.GetCellData().SetScalars(data)
 ```
 
-We'll start with point data
+We'll start with point data. Try:
 ```bash
 python grid/polarWithPointData.py
 ```
 
-Compare this to cell data
+Compare this to cell data. Try:
 ```bash
 python grid/polarWithCellData.py
 ```
@@ -184,7 +191,7 @@ which must be added to the scene
 ren.AddActor(cbar)
 ```
 
-Try it out:
+Try:
 ```bash
 python grid/polarWithPointDataLut.py
 ```
@@ -197,14 +204,16 @@ elevation of the value of another function:
 rr2 = (xx**2 + yy**2).reshape((numPoints,))
 xyz[:, 2] = 0.2*numpy.sin(10.*rr2)/numpy.sqrt(2.*rr2)
 ```
-and run 
+and run: 
 ```bash
 python grid/polarWithPointDataLutBump.py
 ```
 
 ## Going fully 3D <a name="threed"></a>
 
-The previous example was not really in 3D - it represented a surface in 3D and a surface is a 2D object. Do 
+The previous example was not really in 3D - it displayed a surface which is a 2D object. 
+
+Try:
 ```bash
 python 3d/cube.py
 ```
@@ -212,7 +221,7 @@ to run a case with 3D data. We're facing a new problem: we only see the exterior
 
 ### I want to see inside!
 
-One possibility is to cut through the data. We'll create a `vtkCutter` object and indicate to VTK that we will cut the domain with a `vtkPlane`:
+One possibility is to cut through the data. We'll create a `vtkCutter` object and let VTK know that we will cut the domain with a `vtkPlane`:
 ```python
 plane = vtk.vtkPlane()
 plane.SetPosition(0.5, 0.5, 0.5)

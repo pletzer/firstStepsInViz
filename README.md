@@ -40,12 +40,8 @@ quickly. Both these tools are free and binaries exist for nearly for Windows, Li
 
 ### What is a pipeline?
 
-Visualizations are made of elements which are assembled into a pipeline, essentially a workflow. 
-Typically, a pipeline will involve reading data, applying filters, creating actors and rendering the
-actors in a scene. Filters extract information from the data; e.g. a contour filter might extract 
-the surface for which a field satisfy a constraint. Actors are objects that be rendered; triangles, 
-lines, points, etc. At the end of the day every actor is made of collections of triangles, lines and 
-points.
+Visualizations are made of elements which are assembled into a pipeline, essentially a workflow. Typically, a pipeline will involve reading data, applying filters, creating actors and rendering the
+actors in a scene. Filters extract information from the data; e.g. a contour filter might extract the surface for which a field satisfy a constraint. Actors are objects that be rendered; triangles, lines, points, etc. At the end of the day every actor is made of collections of triangles, lines and points.
 
 ### What is a scene?
 
@@ -64,17 +60,15 @@ Try:
 python scene/coneWithLight.py
 ```
 
+Questions: 
+ * How can I change the colour of the light?
+ * How can add another light?
+
 ## Understanding grids <a name="grid"></a>
 
-More likely, your visualizations will involve gridded data so we'll need to understand how grids 
-are represented in VTK. The main types of grid are __structured__ and __unstructructed__. Structured 
-grids have regular topology with arbitrary points. This means that given a set of indices describing 
-a point we can always find the neighbours without additional information beyond the size of the grid. 
-Unstructured grids build on top of points and cells and the arrangement can be arbitrary, i.e. one 
-has to specify the topology. You can mix cells of different types in VTK, for instance hexahedra with
-prisms, lines and points. See [http://www.vtk.org/data-model/]
-for a full list of supported cells. Naturally, unstructured grids are more flexible than structured grids.
-The latter are however easier to use (and more efficient).
+More likely, your visualizations will involve gridded data so we'll need to understand how grids are represented in VTK. The main types of grid are __structured__ and __unstructructed__. Structured grids have regular topology with arbitrary points. This means that given a set of indices describing 
+a point we can always find the neighbours without additional information beyond the size of the grid. Unstructured grids build on top of points and cells and the arrangement can be arbitrary, i.e. one 
+has to specify the topology. You can mix cells of different types in VTK, for instance hexahedra with prisms, lines and points. See [http://www.vtk.org/data-model/]for a full list of supported cells. Naturally, unstructured grids are more flexible than structured grids. The latter are however easier to use (and more efficient).
 
 We'll start with a polar grid represented as a structured grid.
 
@@ -123,6 +117,9 @@ set one of the dimensions to one:
 ```python
 grid.SetDimensions(nthe, nrho, 1)
 ```
+
+Question:
+ * How can I change the resolution of the grid?
 
 ### Visualizing data on a grid
 
@@ -196,10 +193,12 @@ Try:
 python grid/polarWithPointDataLut.py
 ```
 
+Question:
+ * What is the effect of changing the number of colours (ncolors)?
+
 ### Adding depth
 
-So far we worked in flat land -- when generating grid points we set the elevation `z` to zero. Let's set the 
-elevation of the value of another function:
+So far we worked in flat land -- when generating grid points we set the elevation `z` to zero. Let's set the elevation of the value of another function:
 ```python
 rr2 = (xx**2 + yy**2).reshape((numPoints,))
 xyz[:, 2] = 0.2*numpy.sin(10.*rr2)/numpy.sqrt(2.*rr2)

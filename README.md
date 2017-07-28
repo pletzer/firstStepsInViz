@@ -221,23 +221,7 @@ to run a case with 3D data. We're facing a new problem: we only see the exterior
 
 ### I want to see inside!
 
-One possibility is to cut through the data. We'll create a `vtkCutter` object and let VTK know that we will cut the domain with a `vtkPlane`:
-```python
-plane = vtk.vtkPlane()
-plane.SetPosition(0.5, 0.5, 0.5)
-plane.SetNormal(1., 0.2, -0.3)
-knife = vtk.vtkCutter()
-knife.SetCutFunction(plane)
-```
-
-Try:
-```bash
-python 3d/cubeCut.py
-```
-
-### Creating iso-surfaces
-
-Another possibility is generate iso-surfaces from the data. Let's say we want to show the surfaces for which the data take values 0.2, 0.4 and 0.7:
+One possibility is generate iso-surfaces from the data. Let's say we want to show the surfaces for which the data take values 0.2, 0.4 and 0.7:
 ```python
 contour = vtk.vtkContourFilter()
 contour.SetNumberOfValues(3)
@@ -253,5 +237,37 @@ Try:
 ```bash
 python 3d/cubeIsoSurface.py
 ```
+
+### Take a knife and cut through your data
+
+Another possibility is to cut through the data. We'll create a `vtkCutter` object and let VTK know that we will cut the domain with a `vtkPlane`:
+```python
+plane = vtk.vtkPlane()
+plane.SetPosition(0.5, 0.5, 0.5)
+plane.SetNormal(1., 0.2, -0.3)
+knife = vtk.vtkCutter()
+knife.SetCutFunction(plane)
+```
+
+Try:
+```bash
+python 3d/cubeCut.py
+```
+
+## Explore your data with ViSIt
+
+In the previous step we cut through our data and needed provide a plane with position and normal vectors to indicate where to cut. In most instance you 
+will likely want to vary the cut plane. This can be done by hooking VTK up to 
+a graphical user interface (for instance Qt). Another way to achieve this is 
+by saving your data in a file
+```python
+writer = vtk.vtkStructuredGridWriter()
+writer.SetFileName('cube.vtk')
+writer.SetInputData(grid)
+writer.Update()
+```
+and use VisIt to explore your data. 
+
+
 
 Hope you enjoyed the tutorial! Feel free to make suggestions and create pull-request. 

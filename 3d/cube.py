@@ -57,6 +57,11 @@ dataMapper.SetInputData(grid)
 dataActor.SetMapper(dataMapper)
 dataMapper.SetLookupTable(lut)
 
+writer = vtk.vtkStructuredGridWriter()
+writer.SetFileName('cube.vtk')
+writer.SetInputData(grid)
+writer.Update()
+
 # show
 ren = vtk.vtkRenderer()
 renWin = vtk.vtkRenderWindow()

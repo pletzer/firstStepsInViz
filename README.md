@@ -1,6 +1,19 @@
 # firstStepsInViz
 
-First steps in 3D visualizations that are worth a thousand words
+First steps in 3D visualizations that are worth a thousand words, a 30 min introduction to visualization.
+
+The NeSI Team.
+
+What you will learn:
+ * The difference between 2D and 3D visualization
+ * What makes a 3D visualization truly 3D
+    * actors
+    * light 
+    * background 
+ * How to visualize grids
+ * How to show data on grids
+ * Playing with colours
+ * Where to go from here
 
 ## Why 3D visualization?
 

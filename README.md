@@ -57,7 +57,7 @@ Visualizations are made of elements which are assembled into a pipeline, essenti
 actors in a scene. Filters extract information from the data; e.g. a contour filter might extract the surface for which a field satisfy a constraint. Actors are objects that be rendered; triangles, lines, points, etc. At the end of the day every actor is made of collections of triangles, lines and points.
 
 ```sequence
-vtkConeSource->vtkPolyDataMapper->vtkActor
+vtkConeSource -> vtkPolyDataMapper -> vtkActor
 ```
 
 ### What is a scene?

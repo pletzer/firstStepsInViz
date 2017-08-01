@@ -56,10 +56,10 @@ quickly. Both these tools are free and binaries exist for nearly for Windows, Li
 Visualizations are made of elements which are assembled into a pipeline, essentially a workflow. Typically, a pipeline will involve reading data, applying filters, creating actors and rendering the
 actors in a scene. Filters extract information from the data; e.g. a contour filter might extract the surface for which a field satisfy a constraint. Actors are objects that be rendered; triangles, lines, points, etc. At the end of the day every actor is made of collections of triangles, lines and points.
 
-A simple example is a cone, coloured with a mapper and with the result being an actor.
+At a minimum, a pipeline will have a source (reader, object, etc.), a mapper to draw and sometimes colour the source and an actor.
 
 ```sequence
-vtkConeSource -> vtkPolyDataMapper -> vtkActor
+source -> mapper -> actor
 ```
 
 ### What is a scene?

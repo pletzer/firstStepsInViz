@@ -36,7 +36,13 @@ visualization concepts.
 
 Hint: if you're using Python via [Anaconda](https://www.continuum.io/downloads) you can install the VTK toolkit and Python bindings with
 ```bash
+# python 2.x, will install vtk 6.3
 conda install -c anaconda vtk
+```
+or, if using Python 3.x,
+```bash
+# python 3.x, will intstall vtk 7.0.0
+conda install -c satra vtk
 ```
 
 Many users may want to consider [ViSIt](https://wci.llnl.gov/simulation/computer-codes/visit/) or [Paraview](https://www.paraview.org/) as these tools will require no or minimal programming. 

@@ -288,4 +288,4 @@ and use VisIt to explore your data.
 
 
 
-Hope you enjoyed the tutorial! Feel free to make suggestions and create pull-request. 
+Hope you enjoyed the tutorial! Feel free to fork and create pull-requests. 

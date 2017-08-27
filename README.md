@@ -278,7 +278,7 @@ Try:
 python 3d/cubeCut.py
 ```
 
-## Explore your data with ViSIt
+## Explore your data with VisIt
 
 In the previous step we cut through our data and needed provide a plane with position and normal vectors to indicate where to cut. In most instance you 
 will likely want to vary the cut plane. This can be done by hooking VTK up to 

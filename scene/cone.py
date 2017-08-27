@@ -1,6 +1,6 @@
 import vtk
 
-# create a rendering window and renderer
+# create a  rendering window and renderer
 ren = vtk.vtkRenderer()
 ren.SetBackground(0.5, 0.5, 0.5)
 renWin = vtk.vtkRenderWindow()

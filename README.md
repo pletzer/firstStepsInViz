@@ -39,7 +39,7 @@ Hint: if you're using Python via [Anaconda](https://www.continuum.io/downloads) 
 conda install -c anaconda vtk
 ```
 
-Many users may want to consider [ViSIt](https://wci.llnl.gov/simulation/computer-codes/visit/) or [Paraview](https://www.paraview.org/) as these tools will require no or minimal programming. 
+Many users may want to consider [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/) or [Paraview](https://www.paraview.org/) as these tools will require no or minimal programming. 
 If your file format is support by any of these tools then you will be ablt explore your data more 
 quickly. Both these tools are free and binaries exist for nearly for Windows, Linux and Mac OS X. 
 

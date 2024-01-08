@@ -81,6 +81,7 @@ Try:
 ```bash
 python scene/cone.py
 ```
+(This may take some time as a lot of shared libraries get loaded.)
 
 Next we'll refine the cone and add some lights, each with its own colour. 
 

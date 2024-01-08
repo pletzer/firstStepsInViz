@@ -1,6 +1,6 @@
 # firstStepsInViz
 
-First steps in 3D visualizations that are worth a thousand words, a 30 min introduction to visualization.
+First steps in 3D visualizations that are worth a thousand words - a 30 min introduction to visualization.
 
 The NeSI Team.
 
@@ -30,24 +30,28 @@ tends to be static, hence it is more suitable for publishing.
 
 ## What tool should I use for visualization?
 
-For custom visualizations we recommend [VTK](http://www.vtk.org/), which is free. You can either install precompiled versions
-of VTK or build the toolkit from source. It comes with Python bindings, which makes it easy to explore
-visualization concepts.
+For custom visualizations we recommend [VTK](http://www.vtk.org/), which is free and precompiled versions are easy to install. To run the examples we recommend to use to create a virtual environment
 
-Hint: if you're using Python via [Anaconda](https://www.continuum.io/downloads) you can install the VTK toolkit and Python bindings with
-```bash
-# python 2.x, will install vtk 6.3
-conda install -c anaconda vtk
 ```
-or, if using Python 3.x,
+# Path to the virtual environment
+VTKENV=...
+python -m venv $VTKENV
+```
+(on some systems you may need to type `python3 -m venv $VTKENV`, 
+activate the environment
 ```bash
-# python 3.x, will intstall vtk 7.0.0
-conda install -c satra vtk
+source $VTKENV/bin/activate
+```
+and install VTK using
+```bash
+pip install vtk
 ```
 
-Many users may want to consider [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/) or [Paraview](https://www.paraview.org/) as these tools will require no or minimal programming. 
-If your file format is support by any of these tools then you will be ablt explore your data more 
-quickly. Both these tools are free and binaries exist for nearly for Windows, Linux and Mac OS X. 
+To exit the environment, type `deactivate`.
+
+Many users may also want to consider [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/) or [Paraview](https://www.paraview.org/) as these tools will require no or minimal programming. 
+If your file format is support by any of these tools then you will be able to explore your data more 
+quickly. Both these tools are free and binaries exist for Windows, Linux and Mac OS X. 
 
 ## Overview
 1. [General visualization concepts](#scene)
@@ -59,10 +63,10 @@ quickly. Both these tools are free and binaries exist for nearly for Windows, Li
 
 ### What is a pipeline?
 
-Visualizations are made of elements which are assembled into a pipeline, essentially a workflow. Typically, a pipeline will involve reading data, applying filters, creating actors and rendering the
+Visualizations are made of elements that are assembled into a pipeline, essentially a workflow. Typically, a pipeline will involve reading data, applying filters, creating actors and rendering the
 actors in a scene. Filters extract information from the data; e.g. a contour filter might extract the surface for which a field satisfy a constraint. Actors are objects that be rendered; triangles, lines, points, etc. At the end of the day every actor is made of collections of triangles, lines and points.
 
-At a minimum, a pipeline will have a source (reader, object, etc.), a mapper to draw and sometimes colour the source and an actor.
+At a minimum, a pipeline will have a source (reader, object, etc.), a mapper to draw and colour an actor.
 
 ```sequence
 source -> mapper -> actor

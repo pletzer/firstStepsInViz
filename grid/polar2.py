@@ -52,7 +52,7 @@ iren.SetRenderWindow(renWin)
 # add the actors to the renderer, set the background and size
 ren.AddActor(edgeActor)
 ren.SetBackground(0.5, 0.5, 0.5)
-renWin.SetSize(400, 300)
+renWin.SetSize(900, 600)
 iren.Initialize()
 renWin.Render()
 iren.Start()

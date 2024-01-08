@@ -5,7 +5,7 @@ ren = vtk.vtkRenderer()
 ren.SetBackground(0.5, 0.5, 0.5)
 renWin = vtk.vtkRenderWindow()
 renWin.AddRenderer(ren)
-renWin.SetSize(640, 480)
+renWin.SetSize(900, 600)
  
 # create a renderwindowinteractor
 iren = vtk.vtkRenderWindowInteractor()

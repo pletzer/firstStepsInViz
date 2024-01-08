@@ -188,7 +188,7 @@ A lookup table
 ```python
 lut = vtk.vtkLookupTable()
 ```
-maps a data value to a colour, encoded as four floats in the range oof 0 to 1 (red, green, blue and opacity). Here 
+maps a data value to a colour, encoded as four floats in the range of 0 to 1 (red, green, blue and opacity). Here 
 we'll set the colour range to vary from white to green, to light blue, red, purple and black. 
 ```python
 ncolors = 64
